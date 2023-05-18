@@ -26,5 +26,11 @@
     <ClInclude Include="linlist.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="complex.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Person.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

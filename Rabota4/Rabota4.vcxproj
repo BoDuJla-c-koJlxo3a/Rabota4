@@ -142,7 +142,9 @@
     <ClCompile Include="Rabota4.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="complex.h" />
     <ClInclude Include="linlist.h" />
+    <ClInclude Include="Person.h" />
     <ClInclude Include="tree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
