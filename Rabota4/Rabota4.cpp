@@ -33,6 +33,12 @@ int main()
     std::cout << "sdasdad\n";
     Tree<int>* c = map(inc, a);
     std::cout << *(c->toString(1));
+    if ("bbb" > "ac") {
+        std::cout << "aa";
+    }
+    else {
+        std::cout << "bb";
+    }
     return 0;
 }
 

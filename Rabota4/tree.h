@@ -32,6 +32,12 @@ public:
 	}
 
 	~Node() {
+		if (left) {
+			delete left;
+		}
+		if (right) {
+			delete right;
+		}
 		delete data;
 	}
 
@@ -253,6 +259,10 @@ public:
 		root = new Node<T>(item);
 	}
 
+	Tree(Node<T>* item) {
+		root = item;
+	}
+
 	~Tree() {
 		if (!root) {
 			delete root;
@@ -331,18 +341,42 @@ public:
 		return out;
 	}
 
-	bool includesItem(T item) {
+	Node<T> findItem(T item) {
 		Walker<T>* a = new Walker<T>();
 		Node<T>* now = a->KLP(this->root);
 		while (now) {
-			if (*now == item) {
+			if (now->Get() == item) {
 				delete a;
-				return true;
+				return now;
 			}
 			now = a->KLP(0);
 		}
 		delete a;
-		return false;
+		return 0;
+	}
+
+	Node<T> findSubtree(Tree<T>* origin) {
+		Node<T>* ptr = this->findItem(origin->getRoot()->Get());
+		Node<T> *aa = 0, *bb = 0;
+		if (!ptr) {
+			return 0;
+		}
+		Walker<T>* a = new Walker<T>();
+		Walker<T>* b = new Walker<T>();
+		aa = a->KLP(ptr);
+		bb = b->KLP(origin->getRoot());
+		while (aa && bb) {
+			if (aa->Get() != bb->Get()) {
+				delete a;
+				delete b;
+				return 0;
+			}
+			aa = a->KLP(0);
+			bb = b->KLP(0);
+		}
+		delete a;
+		delete b;
+		return ptr;
 	}
 
 	std::string* toString(int walkIndex) {
