@@ -183,6 +183,56 @@ public:
 		return 0;
 	}
 
+
+	Node<T>* LPK(Node<T>* ptr, int mode) { //0 - reset 1 - norm
+		if (mode == 0) {
+			delete stack;
+			stack = new LinkedList<Node<T>*>();
+		}
+		Node<T>* cur = ptr;
+		if (mode == 1) {
+			if (!stack->GetLength()) {
+				return 0;
+			}
+			return stack->pop();
+		}
+		if (cur->GetL()) {
+			LPK(cur->GetL(), 2);
+		}
+		if (cur->GetR()) {
+			LPK(cur->GetR(), 2);
+		}
+		stack->Append(cur);
+		if (mode == 0) {
+			return stack->pop();
+		}
+		return 0;
+	}
+
+	Node<T>* PLK(Node<T>* ptr, int mode) { //0 - reset 1 - norm
+		if (mode == 0) {
+			delete stack;
+			stack = new LinkedList<Node<T>*>();
+		}
+		Node<T>* cur = ptr;
+		if (mode == 1) {
+			if (!stack->GetLength()) {
+				return 0;
+			}
+			return stack->pop();
+		}
+		if (cur->GetL()) {
+			PLK(cur->GetL(), 2);
+		}
+		if (cur->GetR()) {
+			PLK(cur->GetR(), 2);
+		}
+		stack->Append(cur);
+		if (mode == 0) {
+			return stack->pop();
+		}
+		return 0;
+	}
 };
 
 
@@ -330,6 +380,22 @@ public:
 				*s = *s + std::to_string(now->Get());
 				*s = *s + ' ';
 				now = a->PKL(0, 1);
+			}
+			break;
+		case 5:
+			now = a->LPK(this->root, 0);
+			while (now) {
+				*s = *s + std::to_string(now->Get());
+				*s = *s + ' ';
+				now = a->LPK(0, 1);
+			}
+			break;
+		case 6:
+			now = a->PLK(this->root, 0);
+			while (now) {
+				*s = *s + std::to_string(now->Get());
+				*s = *s + ' ';
+				now = a->LPK(0, 1);
 			}
 			break;
 		}
